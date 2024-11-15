@@ -14,6 +14,8 @@
 // •Use deposit and withdraw method and then use get_balance method to
 //      display the balance value.
 
+import 'dart:io';
+
 class BankAccount {
   BankAccount(
       {required String name,
@@ -71,4 +73,47 @@ class BankAccount {
     print("Type of Account: $_typeOfAccount");
     print("Balance Amount: $_balanceAmount");
   }
+}
+
+void main() {
+  List<BankAccount> customers = [];
+  for (int i = 0; i < 2; i++) {
+    print("Enter customer ${i + 1} data:");
+    print("Enter name:");
+    String name = stdin.readLineSync()!;
+    print("Enter account number:");
+    int accountNumber = int.parse(stdin.readLineSync()!);
+    print("Enter type of account (S for saving and C for current):");
+    String typeOfAccount = stdin.readLineSync()!;
+    print("Enter balance amount:");
+    double balanceAmount = double.parse(stdin.readLineSync()!);
+
+    BankAccount customer = BankAccount(
+        name: name,
+        accountNumber: accountNumber,
+        typeOfAccount: typeOfAccount,
+        balanceAmount: balanceAmount);
+    customers.add(customer);
+  }
+
+  for (int i = 0; i < customers.length; i++) {
+    print("Customer ${i + 1} data:");
+    customers[i].displayData();
+  }
+
+  print("Enter the index of the customer you want to deposit money to:");
+  int index = int.parse(stdin.readLineSync()!);
+  print("Enter the amount you want to deposit:");
+  double amount = double.parse(stdin.readLineSync()!);
+  customers[index].depositMoney(amount);
+  print("New balance after deposit:");
+  print(customers[index].balanceAmount);
+
+  print("Enter the index of the customer you want to withdraw money from:");
+  index = int.parse(stdin.readLineSync()!);
+  print("Enter the amount you want to withdraw:");
+  amount = double.parse(stdin.readLineSync()!);
+  customers[index].withdrawMoney(amount);
+  print("New balance after withdrawal:");
+  print(customers[index].balanceAmount);
 }
