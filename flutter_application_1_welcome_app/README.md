@@ -1,6 +1,8 @@
 # flutter_application_1_welcome_app
 
 A new Flutter project.
+![image](https://github.com/user-attachments/assets/ef5ce99e-f57f-47b9-ba39-7b9f0ef35874)
+![image](https://github.com/user-attachments/assets/1907b218-adc4-4be6-9380-8afd200c1161)
 
 ## Getting Started
 
