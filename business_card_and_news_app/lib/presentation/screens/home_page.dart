@@ -1,3 +1,4 @@
+import 'package:business_card/constants/routes.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -30,7 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
             width: double.infinity,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, Routes.businessCard);
+            },
             child: const Text(
               'Button 1',
               style: TextStyle(color: Colors.black),
@@ -44,7 +47,23 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          ElevatedButton(onPressed: () {}, child: const Text('Button 1')),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, Routes.flutterNews);
+            },
+            child: const Text(
+              'Button 1',
+              style: TextStyle(color: Colors.black),
+            ),
+            style: ElevatedButton.styleFrom(
+              shadowColor: Colors.black,
+              elevation: 5,
+              minimumSize: Size(width / 1.2, 50),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
         ],
       ),
       // body: ,

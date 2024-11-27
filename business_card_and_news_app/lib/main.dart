@@ -1,14 +1,17 @@
+import 'package:business_card/constants/routes.dart';
+import 'package:business_card/presentation/screens/business_card_screen.dart';
+import 'package:business_card/router.dart';
 import 'package:flutter/material.dart';
 
-import 'presentation/screens/flutter_news_page.dart';
-import 'presentation/screens/home_page.dart';
-
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(
+    appRouter: MyAppRouter(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key, required this.appRouter});
+  MyAppRouter appRouter;
 
   // This widget is the root of your application.
   @override
@@ -19,7 +22,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const FlutterNewsPage(),
+      onGenerateRoute: appRouter.onGenerateRoute,
+      initialRoute: Routes.home,
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:business_card/constants/images.dart';
+import 'package:business_card/constants/text.dart';
 import 'package:flutter/material.dart';
 
 class FlutterNewsPage extends StatelessWidget {
@@ -6,6 +8,7 @@ class FlutterNewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF6caec9),
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -17,14 +20,15 @@ class FlutterNewsPage extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.blue,
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 30,
                 ),
               ),
               TextSpan(
                 text: ' News',
                 style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
+                  color: Colors.red,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -33,6 +37,9 @@ class FlutterNewsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          const Spacer(
+            flex: 2,
+          ),
           Container(
             width: double.infinity,
             margin: const EdgeInsets.all(10),
@@ -40,19 +47,59 @@ class FlutterNewsPage extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.grey,
-              image: DecorationImage(
-                  fit: BoxFit.fitHeight,
-                  image: NetworkImage(
-                      'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/11/vincent-cyberpunk-2077.jpg?q=70&fit=crop&w=1140&h=&dpr=1')),
+              image: const DecorationImage(
+                  fit: BoxFit.fitHeight, image: NetworkImage(Images.news)),
             ),
-            // child: Image(
-            //   image: NetworkImage(
-            //       'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/11/vincent-cyberpunk-2077.jpg?q=70&fit=crop&w=1140&h=&dpr=1'),
-            // ),
           ),
-          Text('Cyberpunk 2077 Passes Another Incredible Sales Milestone'),
-          Text(
-              "Cyberpunk 2077 has breached the 30 million mark in terms of copies sold, as per developer CD Projekt Red's latest update. Additionally, the Phantom Liberty DLC, which expands upon Cyberpunk 2077's world, has also moved 8 million units since releasing a year ago.")
+          const Text(MyText.newsTitle,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis,
+              )),
+          Text(MyText.newsDescription,
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.grey[600],
+                fontWeight: FontWeight.bold,
+              )),
+          const Spacer(
+            flex: 1,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Image(
+                image: NetworkImage(
+                  Images.facebook,
+                  scale: 5,
+                ),
+              ),
+              CircleAvatar(
+                radius: 40,
+                backgroundColor: Colors.red,
+                backgroundImage: Image.network(
+                  // scale: 100,
+                  Images.instagram,
+                  alignment: Alignment.center,
+                ).image,
+              ),
+              CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 40,
+                child: Image.network(
+                  Images.flutter,
+                  // fit: BoxFit.fitWidth,
+                  scale: 5,
+                  alignment: Alignment.center,
+                ),
+              ),
+            ],
+          ),
+          const Spacer(
+            flex: 1,
+          ),
         ],
       ),
     );
