@@ -1,5 +1,4 @@
 import 'package:business_card/constants/routes.dart';
-import 'package:business_card/presentation/screens/business_card_screen.dart';
 import 'package:business_card/router.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +8,7 @@ void main() {
   ));
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   MyApp({super.key, required this.appRouter});
   MyAppRouter appRouter;

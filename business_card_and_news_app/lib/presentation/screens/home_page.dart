@@ -10,7 +10,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    var hight = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey[900],
@@ -34,10 +33,6 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               Navigator.pushNamed(context, Routes.businessCard);
             },
-            child: const Text(
-              'Button 1',
-              style: TextStyle(color: Colors.black),
-            ),
             style: ElevatedButton.styleFrom(
               shadowColor: Colors.black,
               elevation: 5,
@@ -45,16 +40,16 @@ class _MyHomePageState extends State<MyHomePage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
+            ),
+            child: const Text(
+              'Business Card',
+              style: TextStyle(color: Colors.black),
             ),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, Routes.flutterNews);
             },
-            child: const Text(
-              'Button 1',
-              style: TextStyle(color: Colors.black),
-            ),
             style: ElevatedButton.styleFrom(
               shadowColor: Colors.black,
               elevation: 5,
@@ -62,6 +57,10 @@ class _MyHomePageState extends State<MyHomePage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
+            ),
+            child: const Text(
+              'News Page',
+              style: TextStyle(color: Colors.black),
             ),
           ),
         ],
