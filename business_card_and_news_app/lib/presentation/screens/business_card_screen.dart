@@ -32,6 +32,7 @@ class BusinessCardScreen extends StatelessWidget {
           const Text(
             'Omar Khalifa',
             style: TextStyle(
+              fontFamily: 'BungeeSpice',
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
@@ -39,6 +40,7 @@ class BusinessCardScreen extends StatelessWidget {
           const Text(
             'Flutter Developer',
             style: TextStyle(
+              fontFamily: 'DancingScript',
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
