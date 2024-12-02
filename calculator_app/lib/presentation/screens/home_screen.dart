@@ -2,7 +2,6 @@ import 'package:calculator_app/constants/colors.dart';
 import 'package:calculator_app/constants/images.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/bottoms.dart';
 import '../widgets/result_box.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int result = 0;
   int number1 = 0;
   int number2 = 0;
+  String operation = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,29 +25,134 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            buildResultBox(number1, number2, result),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                addMinusBox(),
-              ],
-            ),
+            buildResultBox(number1, number2, result, operation),
+            buildControlRow(),
             bottomsBox(),
-            InkWell(
-              onTap: () {
+            resetButton(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget resetButton() {
+    return InkWell(
+      onTap: () {
+        number1 = 0;
+        number2 = 0;
+        result = 0;
+        operation = '';
+        setState(() {});
+      },
+      child: CircleAvatar(
+        backgroundColor: MysColors.primary,
+        radius: 80,
+        backgroundImage:
+            const Image(image: NetworkImage(MyImages.bottom)).image,
+        child: const Text('Reset All', style: TextStyle(color: Colors.white)),
+      ),
+    );
+  }
+
+  Widget buildControlRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        addMinusBox(),
+      ],
+    );
+  }
+
+  Widget bottomsBox() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            bottom(
+              text: '+ Addition',
+              onPressed: () {
+                result = number1 + number2;
+                operation = '+';
                 setState(() {});
               },
-              child: CircleAvatar(
-                backgroundColor: MysColors.primary,
-                radius: 80,
-                backgroundImage:
-                    const Image(image: NetworkImage(MyImages.bottom)).image,
-                child: const Text('Reset All',
-                    style: TextStyle(color: Colors.white)),
-              ),
+            ),
+            bottom(
+              text: '- Subtraction',
+              onPressed: () {
+                result = number1 - number2;
+                operation = '-';
+                setState(() {});
+              },
             ),
           ],
         ),
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            bottom(
+              text: 'x Multiplication',
+              onPressed: () {
+                result = number1 * number2;
+                operation = 'x';
+                setState(() {});
+              },
+            ),
+            bottom(
+              text: '÷ Division',
+              onPressed: () {
+                result = number1 ~/ number2;
+                operation = '÷';
+                setState(() {});
+              },
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            bottom(
+              text: '^ exponentiation',
+              onPressed: () {
+                result = number1 ^ number2;
+                operation = '^';
+                setState(() {});
+              },
+            ),
+            bottom(
+              text: '% Modulus',
+              onPressed: () {
+                result = number1 % number2;
+                operation = '%';
+                setState(() {});
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget bottom({required String text, required Function() onPressed}) {
+    return ElevatedButton(
+      // clipBehavior: Clip.antiAlias,
+
+      style: ElevatedButton.styleFrom(
+        shadowColor: MysColors.primary,
+        elevation: 30,
+      ),
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: const TextStyle(
+            fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
       ),
     );
   }

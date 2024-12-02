@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
 
-Widget buildResultBox(int number1, int number2, int result) {
+Widget buildResultBox(int number1, int number2, int result, String operation) {
   return Container(
     margin: const EdgeInsets.all(10),
     padding: const EdgeInsets.all(10),
@@ -23,12 +23,55 @@ Widget buildResultBox(int number1, int number2, int result) {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         buildNumberField('$number1'),
+        getOperationIcon(operation),
         buildNumberField('$number2'),
         equalIcon(),
         buildNumberField('$result'),
       ],
     ),
   );
+}
+
+getOperationIcon(String operation) {
+  switch (operation) {
+    case '+':
+      return Icon(
+        Icons.add,
+        color: Colors.white,
+        size: 40,
+      );
+    case '-':
+      return Icon(
+        Icons.remove,
+        color: Colors.white,
+        size: 40,
+      );
+    case 'x':
+      return Icon(
+        Icons.close,
+        color: Colors.white,
+        size: 40,
+      );
+    case '÷':
+      return Text(
+        '÷',
+        style: TextStyle(color: Colors.white, fontSize: 40),
+      );
+
+    case '%':
+      return Text(
+        '%',
+        style: TextStyle(color: Colors.white, fontSize: 40),
+      );
+
+    case '^':
+      return Text(
+        '^',
+        style: TextStyle(color: Colors.white, fontSize: 40),
+      );
+    default:
+      return SizedBox();
+  }
 }
 
 Widget equalIcon() {
