@@ -1,7 +1,7 @@
 import 'package:calculator_app/constants/colors.dart';
 import 'package:calculator_app/constants/images.dart';
+import 'package:calculator_app/constants/strings.dart';
 import 'package:flutter/material.dart';
-
 import '../widgets/result_box.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int result = 0;
   int number1 = 0;
   int number2 = 0;
-  String operation = '';
+  String? operation;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            buildResultBox(number1, number2, result, operation),
+            buildResultBox(number1, number2, result, operation ?? ''),
             buildControlRow(),
             bottomsBox(),
             resetButton(),
@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         number1 = 0;
         number2 = 0;
         result = 0;
-        operation = '';
+        operation = null;
         setState(() {});
       },
       child: CircleAvatar(
@@ -49,7 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
         radius: 80,
         backgroundImage:
             const Image(image: NetworkImage(MyImages.bottom)).image,
-        child: const Text('Reset All', style: TextStyle(color: Colors.white)),
+        child: const Text(MyStrings.resetButton,
+            style: TextStyle(color: Colors.white)),
       ),
     );
   }
@@ -71,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             bottom(
-              text: '+ Addition',
+              text: MyStrings.addButton,
               onPressed: () {
                 result = number1 + number2;
                 operation = '+';
@@ -79,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             bottom(
-              text: '- Subtraction',
+              text: MyStrings.minusButton,
               onPressed: () {
                 result = number1 - number2;
                 operation = '-';
@@ -95,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             bottom(
-              text: 'x Multiplication',
+              text: MyStrings.multiplyButton,
               onPressed: () {
                 result = number1 * number2;
                 operation = 'x';
@@ -103,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             bottom(
-              text: '÷ Division',
+              text: MyStrings.divideButton,
               onPressed: () {
                 result = number1 ~/ number2;
                 operation = '÷';
@@ -119,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             bottom(
-              text: '^ exponentiation',
+              text: MyStrings.exponentiationButton,
               onPressed: () {
                 result = number1 ^ number2;
                 operation = '^';
@@ -127,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             bottom(
-              text: '% Modulus',
+              text: MyStrings.modulusButton,
               onPressed: () {
                 result = number1 % number2;
                 operation = '%';

@@ -35,42 +35,42 @@ Widget buildResultBox(int number1, int number2, int result, String operation) {
 getOperationIcon(String operation) {
   switch (operation) {
     case '+':
-      return Icon(
+      return const Icon(
         Icons.add,
         color: Colors.white,
         size: 40,
       );
     case '-':
-      return Icon(
+      return const Icon(
         Icons.remove,
         color: Colors.white,
         size: 40,
       );
     case 'x':
-      return Icon(
+      return const Icon(
         Icons.close,
         color: Colors.white,
         size: 40,
       );
     case '÷':
-      return Text(
+      return const Text(
         '÷',
         style: TextStyle(color: Colors.white, fontSize: 40),
       );
 
     case '%':
-      return Text(
+      return const Text(
         '%',
         style: TextStyle(color: Colors.white, fontSize: 40),
       );
 
     case '^':
-      return Text(
+      return const Text(
         '^',
         style: TextStyle(color: Colors.white, fontSize: 40),
       );
     default:
-      return SizedBox();
+      return const SizedBox();
   }
 }
 
