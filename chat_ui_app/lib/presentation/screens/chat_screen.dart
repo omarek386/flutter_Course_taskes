@@ -16,6 +16,7 @@ class ChatScreen extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
         slivers: [
           const SliverToBoxAdapter(
             child: SearchBox(),
