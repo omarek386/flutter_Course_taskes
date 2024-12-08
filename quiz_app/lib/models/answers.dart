@@ -1,6 +1,6 @@
 class Answers {
-  final String answer;
+  final String text;
   final bool isCorrect;
 
-  Answers({required this.answer, required this.isCorrect});
+  Answers({required this.text, required this.isCorrect});
 }

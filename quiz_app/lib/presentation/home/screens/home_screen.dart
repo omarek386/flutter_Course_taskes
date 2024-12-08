@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Spacer(
+          const Spacer(
             flex: 3,
           ),
           const Text('Welcome to the Quiz App!',
@@ -27,12 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.white,
                   fontSize: 30,
                   fontWeight: FontWeight.bold)),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           const Text('Press the button below to start the quiz!',
               style: TextStyle(color: Colors.white, fontSize: 16)),
-          Spacer(
+          const Spacer(
             flex: 4,
           ),
           MaterialButton(
@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: const Text('Start Quiz'),
           ),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
         ],
