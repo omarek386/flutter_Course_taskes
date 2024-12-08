@@ -2,10 +2,14 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:quiz_app/constants/questions.dart';
-import 'package:quiz_app/helpers/navigator.dart';
-import 'package:quiz_app/models/answers.dart';
-import 'package:quiz_app/presentation/home/home_screen.dart';
+import '../../constants/questions.dart';
+import '../../models/answers.dart';
+import 'widgets/question_counter.dart';
+import 'widgets/timer_box.dart';
+import 'widgets/title_text.dart';
+
+import 'widgets/end_message.dart';
+import 'widgets/time_out_alert.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -20,7 +24,7 @@ class _QuizScreenState extends State<QuizScreen> {
   String? selectedAnswer;
   String nextButtonText = 'Next Question';
   late String correctAnswer;
-  // late Timer timer;
+  bool activeTimer = true;
   int time = 10;
 
   int score = 0;
@@ -32,12 +36,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // startTimer();
-    // customTimer();
-    isLastQuestion = index == questions.length - 1;
-    isLastQuestion
-        ? nextButtonText = 'Submit'
-        : nextButtonText = 'Next Question';
+    lastQuestionLogic();
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -47,85 +46,15 @@ class _QuizScreenState extends State<QuizScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              'Do your best !',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            const TitleText(),
             const SizedBox(height: 20),
-            Text(
-              'Question ${index + 1} / ${questions.length}',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
-            ),
+            QuestionCounter(index: index),
             const SizedBox(height: 20),
             Stack(
               clipBehavior: Clip.none,
               children: [
-                Container(
-                  // margin: const EdgeInsets.all(20),
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        // questions[Random().nextInt(questions.length)].question,
-                        questions[index].question,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      for (var answer in questions[index].answers)
-                        Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: answerButton(answer: answer)),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  top: -25,
-                  child: Container(
-                    height: 40,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      color: time > 6
-                          ? Colors.green[300]
-                          : time > 3
-                              ? Colors.yellow[300]
-                              : Colors.red[300],
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 5,
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.timer_outlined),
-                        Text(
-                          '$time s',
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                questionsAndAnswersBox(),
+                TimerBox(time: time, activeTimer: activeTimer),
               ],
             ),
             const SizedBox(height: 20),
@@ -134,6 +63,44 @@ class _QuizScreenState extends State<QuizScreen> {
         ),
       )),
     );
+  }
+
+  Container questionsAndAnswersBox() {
+    return Container(
+      // margin: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        children: [
+          questionText(),
+          const SizedBox(height: 20),
+          for (var answer in questions[index].answers)
+            Padding(
+                padding: const EdgeInsets.all(10),
+                child: answerButton(answer: answer)),
+        ],
+      ),
+    );
+  }
+
+  Text questionText() {
+    return Text(
+      questions[index].question,
+      style: const TextStyle(
+        color: Colors.black,
+        fontSize: 20,
+      ),
+    );
+  }
+
+  void lastQuestionLogic() {
+    isLastQuestion = index == questions.length - 1;
+    isLastQuestion
+        ? nextButtonText = 'Submit'
+        : nextButtonText = 'Next Question';
   }
 
   MaterialButton nextButton() {
@@ -146,32 +113,16 @@ class _QuizScreenState extends State<QuizScreen> {
       height: 50,
       onPressed: () {
         time = 10;
-        // customTimer();
         setState(() {
           if (selectedAnswer == null) {
             return;
           }
 
           if (isLastQuestion) {
-            // timer.cancel();
-            log('Quiz Ended');
-            log('Final Score: $score');
-
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: const Text('Quiz Ended'),
-                content: Text('Your final score is $score'),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      context.pushReplacement(const HomeScreen());
-                    },
-                    child: const Text('Close'),
-                  ),
-                ],
-              ),
-            );
+            // log('Quiz Ended');
+            // log('Final Score: $score');
+            activeTimer = false;
+            endMessage(context: context, score: score);
             return;
           }
           index++;
@@ -206,40 +157,18 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  // void startTimer() {
-  //   timer = Timer.periodic(const Duration(seconds: 1), (_) {
-  //     setState(() {
-  //       if (time == 0) {
-  //         timer.cancel();
-  //         return;
-  //       }
-  //       time--;
-  //     });
-  //   });
-  // }
-
   customTimer() async {
     while (time > 0) {
-      await Future.delayed(Duration(seconds: 1), () {
+      await Future.delayed(const Duration(seconds: 1), () {
         log('$time second passed');
         time--;
         setState(() {});
       });
     }
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Time Up'),
-        content: Text('Your final score is $score / ${index + 1}'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              context.pushReplacement(const HomeScreen());
-            },
-            child: const Text('Close'),
-          ),
-        ],
-      ),
-    );
+    // ignore: use_build_context_synchronously
+    activeTimer
+        // ignore: use_build_context_synchronously
+        ? timeOutAlert(context: context, score: score, index: index)
+        : null;
   }
 }

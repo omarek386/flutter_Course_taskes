@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/helpers/navigator.dart';
+import '../../helpers/navigator.dart';
 
 import '../quiz/quiz_screen.dart';
 
@@ -20,13 +20,12 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Spacer(
+            flex: 1,
+          ),
+          Image.asset('assets/quizLogo.png'),
+          const Spacer(
             flex: 3,
           ),
-          const Text('Welcome to the Quiz App!',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold)),
           const Spacer(
             flex: 1,
           ),

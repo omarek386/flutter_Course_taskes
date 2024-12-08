@@ -1,5 +1,5 @@
-import 'package:quiz_app/models/questions.dart';
 import '../models/answers.dart';
+import '../models/questions.dart';
 
 List<Questions> questions = [
   Questions(question: 'What is the capital of France?', answers: [
