@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/helpers/navigator.dart';
-
-import '../home/home_screen.dart';
+import 'package:quiz_app/presentation/onBoarding/on_boarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
       // ignore: use_build_context_synchronously
-      context.pushReplacement(const HomeScreen());
+      context.pushReplacement(const OnBoardingScreen());
     });
     super.initState();
   }
@@ -30,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset('assets/quizLogo.png'),
-          CircularProgressIndicator(
+          const CircularProgressIndicator(
             color: Colors.white,
           ),
         ],

@@ -12,7 +12,8 @@ import 'widgets/end_message.dart';
 import 'widgets/time_out_alert.dart';
 
 class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key});
+  const QuizScreen({super.key, required this.userName});
+  final String userName;
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -46,7 +47,9 @@ class _QuizScreenState extends State<QuizScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const TitleText(),
+            TitleText(
+              userName: widget.userName,
+            ),
             const SizedBox(height: 20),
             QuestionCounter(index: index),
             const SizedBox(height: 20),

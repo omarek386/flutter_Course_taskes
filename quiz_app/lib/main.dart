@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/presentation/splash/splash_screen.dart';
+import 'package:quiz_app/constants/router.dart';
+import 'package:quiz_app/helpers/app_router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(
+    appRouter: AppRouter(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.appRouter});
+  final AppRouter appRouter;
 
   // This widget is the root of your application.
   @override
@@ -14,11 +18,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'quiz app',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const SplashScreen(),
+      // home: SplashScreen(),
+      initialRoute: Routers.splashScreen,
+      onGenerateRoute: appRouter.onGenerateRoute,
     );
   }
 }
