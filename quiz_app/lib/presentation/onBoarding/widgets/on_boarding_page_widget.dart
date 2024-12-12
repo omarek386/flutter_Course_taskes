@@ -7,10 +7,12 @@ class OnBoardingPageWidget extends StatelessWidget {
     required this.title,
     required this.lottiePath,
     required this.description,
+    required this.isLastPage,
   });
   final String title;
   final String lottiePath;
   final String description;
+  final bool isLastPage;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,10 @@ class OnBoardingPageWidget extends StatelessWidget {
           const Spacer(flex: 2),
           Text(
             title,
-            style: const TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
+            style: TextStyle(
+                color: isLastPage ? Colors.white : Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 30),
           ),
           Lottie.asset(
             lottiePath,

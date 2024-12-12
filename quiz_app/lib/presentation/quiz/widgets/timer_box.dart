@@ -19,11 +19,13 @@ class TimerBox extends StatelessWidget {
         height: 40,
         width: 100,
         decoration: BoxDecoration(
-          color: time > 6
-              ? Colors.green[300]
-              : time > 3
-                  ? Colors.yellow[300]
-                  : Colors.red[300],
+          color: activeTimer
+              ? time > 6
+                  ? Colors.green[300]
+                  : time > 3
+                      ? Colors.yellow[300]
+                      : Colors.red[300]
+              : Colors.grey,
           boxShadow: const [
             BoxShadow(
               color: Colors.black,
