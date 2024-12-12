@@ -40,31 +40,34 @@ class _QuizScreenState extends State<QuizScreen> {
     lastQuestionLogic();
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            TitleText(
-              userName: widget.userName,
-            ),
-            const SizedBox(height: 20),
-            QuestionCounter(index: index),
-            const SizedBox(height: 20),
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                questionsAndAnswersBox(),
-                TimerBox(time: time, activeTimer: activeTimer),
-              ],
-            ),
-            const SizedBox(height: 20),
-            nextButton(),
-          ],
-        ),
-      )),
+      body: PopScope(
+        canPop: false,
+        child: SafeArea(
+            child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TitleText(
+                userName: widget.userName,
+              ),
+              const SizedBox(height: 20),
+              QuestionCounter(index: index),
+              const SizedBox(height: 20),
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  questionsAndAnswersBox(),
+                  TimerBox(time: time, activeTimer: activeTimer),
+                ],
+              ),
+              const SizedBox(height: 20),
+              nextButton(),
+            ],
+          ),
+        )),
+      ),
     );
   }
 

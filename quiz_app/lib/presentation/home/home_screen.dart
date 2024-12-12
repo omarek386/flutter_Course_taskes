@@ -26,14 +26,19 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset('assets/quizLogo.png'),
-            UserNameTextFormField(
-                userNameKey: userNameKey,
-                userNameController: userNameController),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: context.width * 0.05),
+              child: UserNameTextFormField(
+                  userNameKey: userNameKey,
+                  userNameController: userNameController),
+            ),
             SizedBox(height: context.height * 0.2),
             const Text('Press the button below to start the quiz!',
                 style: TextStyle(color: Colors.white, fontSize: 16)),
             SizedBox(height: context.height * 0.1),
-            startQuizButton(context),
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: context.width * 0.05),
+                child: startQuizButton(context)),
           ],
         ),
       )),
