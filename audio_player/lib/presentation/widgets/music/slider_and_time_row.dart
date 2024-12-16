@@ -1,18 +1,12 @@
 import 'package:audio_player/extantions/media_quiry.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+
+import '../../screens/home_screen.dart';
 
 class SliderAndTimeRow extends StatelessWidget {
   const SliderAndTimeRow({
     super.key,
-    required this.position,
-    required this.duration,
-    required this.audioPlayer,
   });
-
-  final Duration position;
-  final Duration duration;
-  final AudioPlayer audioPlayer;
 
   @override
   Widget build(BuildContext context) {

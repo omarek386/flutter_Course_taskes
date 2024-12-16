@@ -13,8 +13,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Audio Player',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        scaffoldBackgroundColor: Colors.black,
+        bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: Colors.black,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+        ),
       ),
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),

@@ -1,18 +1,24 @@
 import 'package:audio_player/constants/animations.dart';
+import 'package:audio_player/constants/musics.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class PosterWidget extends StatelessWidget {
+import '../../screens/home_screen.dart';
+import '../home/list_of_music.dart';
+
+class PosterWidget extends StatefulWidget {
   const PosterWidget({
     super.key,
-    required this.isPlaying,
-    required this.image,
   });
-  final String image;
-  final bool isPlaying;
 
   @override
+  State<PosterWidget> createState() => _PosterWidgetState();
+}
+
+class _PosterWidgetState extends State<PosterWidget> {
+  @override
   Widget build(BuildContext context) {
+    setState(() {});
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -21,18 +27,14 @@ class PosterWidget extends StatelessWidget {
             height: 450,
             child: Lottie.asset(
               MyAnimations.lottieMusicAnimation,
-              // fit: BoxFit.cover,
-              // repeat: isPlaying ? true : false,
               animate: isPlaying,
-
-              // animate: isPlaying ? true : false,
             )),
         SizedBox(
           width: 300,
           height: 300,
           child: ClipOval(
             child: Image.network(
-              image,
+              musics[myIndex].cover,
               fit: BoxFit.cover,
             ),
           ),
