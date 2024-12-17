@@ -25,8 +25,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     intAudio(setState);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     isPlaying = playerState == PlayerState.playing;
     return Scaffold(
       backgroundColor: Colors.black,
