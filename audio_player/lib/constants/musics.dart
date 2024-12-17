@@ -1,4 +1,4 @@
-import 'package:audio_player/constants/images.dart';
+import 'images.dart';
 
 import '../models/music.dart';
 import 'audio.dart';

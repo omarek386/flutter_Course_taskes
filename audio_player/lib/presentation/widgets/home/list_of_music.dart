@@ -1,9 +1,10 @@
-import 'package:audio_player/constants/animations.dart';
-import 'package:audio_player/constants/musics.dart';
-import 'package:audio_player/presentation/screens/home_screen.dart';
-import 'package:audio_player/presentation/screens/music_screen.dart';
+import '../../../constants/animations.dart';
+import '../../../constants/musics.dart';
+import '../../screens/home_screen.dart';
+import '../../screens/music_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
 int myIndex = 0;
@@ -16,7 +17,7 @@ class ListOfMusic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 355,
+      height: 355.h,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemCount: musics.length,
@@ -47,11 +48,11 @@ class ListOfMusic extends StatelessWidget {
       ),
       subtitle: Text(musics[index].artist),
       leading: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         child: Image.network(
           musics[index].cover,
           fit: BoxFit.cover,
-          width: 60,
+          width: 60.w,
         ),
       ),
       trailing: selectedMusic == musics[index].title

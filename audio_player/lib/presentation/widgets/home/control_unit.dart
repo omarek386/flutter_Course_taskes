@@ -1,10 +1,11 @@
-import 'package:audio_player/constants/musics.dart';
-import 'package:audio_player/extantions/media_quiry.dart';
-import 'package:audio_player/presentation/screens/home_screen.dart';
-import 'package:audio_player/presentation/widgets/home/list_of_music.dart';
-import 'package:audio_player/presentation/widgets/music/play_pause_button.dart';
+import '../../../constants/musics.dart';
+import '../../../extantions/media_quiry.dart';
+import '../../screens/home_screen.dart';
+import 'list_of_music.dart';
+import '../music/play_pause_button.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ControlUnit extends StatelessWidget {
   const ControlUnit({
@@ -16,10 +17,10 @@ class ControlUnit extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
       ),
       // height: 50,
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8).r,
       width: context.deviceWidth * 0.9,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -34,7 +35,7 @@ class ControlUnit extends StatelessWidget {
               audioPlayer.play(AssetSource(musics[myIndex].path));
             },
             icon: const Icon(Icons.skip_previous),
-            iconSize: 40,
+            iconSize: 40.sp,
           ),
           PlayPauseButton(),
           IconButton(
@@ -48,7 +49,7 @@ class ControlUnit extends StatelessWidget {
               audioPlayer.play(AssetSource(musics[myIndex].path));
             },
             icon: const Icon(Icons.skip_next),
-            iconSize: 40,
+            iconSize: 40.sp,
           ),
         ],
       ),

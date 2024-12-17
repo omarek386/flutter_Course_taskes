@@ -1,9 +1,10 @@
-import 'package:audio_player/presentation/widgets/home/inti_audio.dart';
-import 'package:audio_player/presentation/widgets/music/control_unit_of_music_screen.dart';
-import 'package:audio_player/presentation/widgets/music/poster_widget.dart';
-import 'package:audio_player/presentation/widgets/music/slider_and_time_row.dart';
+import '../widgets/home/inti_audio.dart';
+import '../widgets/music/control_unit_of_music_screen.dart';
+import '../widgets/music/poster_widget.dart';
+import '../widgets/music/slider_and_time_row.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'home_screen.dart';
 
 class MusicScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _MusicScreenState extends State<MusicScreen> {
         PosterWidget(),
         ControlUnitOfMusicScreen(),
         SliderAndTimeRow(),
-        SizedBox(height: 20),
+        SizedBox(height: 20.h),
       ],
     );
   }

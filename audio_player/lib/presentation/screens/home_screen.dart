@@ -1,8 +1,10 @@
-import 'package:audio_player/constants/animations.dart';
-import 'package:audio_player/presentation/widgets/home/control_unit.dart';
-import 'package:audio_player/presentation/widgets/home/list_of_music.dart';
+import '../../constants/animations.dart';
+import '../../extantions/media_quiry.dart';
+import '../widgets/home/control_unit.dart';
+import '../widgets/home/list_of_music.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
 import '../widgets/home/inti_audio.dart';
@@ -27,35 +29,39 @@ class _HomeScreenState extends State<HomeScreen> {
     intAudio(setState);
     isPlaying = playerState == PlayerState.playing;
     return Scaffold(
-      // ToDo: Add a background color to the app bar
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text(
-          'Home Screen',
+        title: Text(
+          isPlaying ? 'Playing: $selectedMusic' : 'Home Screen',
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body: SizedBox(
+        height: context.deviceHigh,
+        width: context.deviceWidth,
         child: Stack(
-          alignment: Alignment.center,
+          alignment: Alignment.topCenter,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Lottie.asset(
-                  MyAnimations.lottieAstroAnimation,
-                  animate: isPlaying,
-                  height: 300,
-                ),
-                Divider(thickness: 3, endIndent: 10, indent: 10),
-                ListOfMusic(),
-              ],
+            Lottie.asset(
+              MyAnimations.lottieAstroAnimation,
+              animate: isPlaying,
+              height: 220.h,
             ),
             Positioned(
-              bottom: 20,
+              bottom: 0,
+              child: Container(
+                  width: context.deviceWidth,
+                  height: context.deviceHigh * 0.65,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[800],
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                  child: ListOfMusic()),
+            ),
+            Positioned(
+              bottom: 20.h,
               child: ControlUnit(),
             )
           ],

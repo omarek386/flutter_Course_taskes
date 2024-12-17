@@ -2,9 +2,7 @@ import '../../screens/home_screen.dart';
 
 intAudio(setState) {
   audioPlayer.onDurationChanged.listen((event) {
-    setState(() {
-      duration = event;
-    });
+    duration = event;
   });
   audioPlayer.onPositionChanged.listen((event) {
     setState(() {
@@ -12,14 +10,10 @@ intAudio(setState) {
     });
   });
   audioPlayer.onPlayerStateChanged.listen((event) {
-    setState(() {
-      playerState = event;
-    });
+    playerState = event;
   });
 
   audioPlayer.onPlayerComplete.listen((event) {
-    setState(() {
-      position = Duration();
-    });
+    position = Duration();
   });
 }

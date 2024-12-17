@@ -1,9 +1,10 @@
-import 'package:audio_player/constants/musics.dart';
-import 'package:audio_player/presentation/screens/home_screen.dart';
-import 'package:audio_player/presentation/widgets/home/list_of_music.dart';
-import 'package:audio_player/presentation/widgets/music/play_pause_button.dart';
+import '../../../constants/musics.dart';
+import '../../screens/home_screen.dart';
+import '../home/list_of_music.dart';
+import 'play_pause_button.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ControlUnitOfMusicScreen extends StatelessWidget {
   const ControlUnitOfMusicScreen({
@@ -27,7 +28,7 @@ class ControlUnitOfMusicScreen extends StatelessWidget {
             );
           },
           icon: Icon(Icons.skip_previous),
-          iconSize: 40,
+          iconSize: 40.sp,
         ),
         PlayPauseButton(),
         IconButton(
@@ -41,7 +42,7 @@ class ControlUnitOfMusicScreen extends StatelessWidget {
             audioPlayer.play(AssetSource(musics[myIndex].path));
           },
           icon: Icon(Icons.skip_next),
-          iconSize: 40,
+          iconSize: 40.sp,
         ),
       ],
     );

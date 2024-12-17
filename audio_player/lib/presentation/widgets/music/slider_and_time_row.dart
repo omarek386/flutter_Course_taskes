@@ -1,4 +1,4 @@
-import 'package:audio_player/extantions/media_quiry.dart';
+import '../../../extantions/media_quiry.dart';
 import 'package:flutter/material.dart';
 
 import '../../screens/home_screen.dart';
