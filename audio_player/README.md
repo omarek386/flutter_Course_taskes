@@ -17,8 +17,13 @@ This project is a Flutter application that allows users to play audio files. It 
 
 <!-- Add your screenshots here -->
 
-![Home Screen](path/to/home_screen.png)
-![Music Player Screen](path/to/music_player_screen.png)
+### Home Screen
+<img src='https://github.com/user-attachments/assets/6ef0bee2-1e1e-4c67-9205-5beea7231fac' width=300>
+
+### Music Player Screen
+
+<img src='https://github.com/user-attachments/assets/0feb5e37-dcea-486f-b04a-535df5d05b1a' width=300>
+
 
 ## Getting Started
 
