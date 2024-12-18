@@ -46,7 +46,10 @@ class ListOfMusic extends StatelessWidget {
         musics[index].title,
         style: TextStyle(color: Colors.white),
       ),
-      subtitle: Text(musics[index].artist),
+      subtitle: Text(
+        musics[index].artist,
+        style: TextStyle(color: const Color.fromARGB(255, 190, 188, 188)),
+      ),
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(8.r),
         child: Image.network(
