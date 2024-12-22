@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:one_clock/one_clock.dart';
 
@@ -26,7 +27,7 @@ class ClockWidget extends StatelessWidget {
             secondHandColor: secondHandColor,
             tickColor: clockColor,
             decoration: BoxDecoration(
-                border: Border.all(width: 2.0, color: clockColor),
+                border: Border.all(width: 2.0.w, color: clockColor),
                 color: Colors.transparent,
                 shape: BoxShape.circle),
             width: clockSize,
@@ -49,10 +50,10 @@ class ClockWidget extends StatelessWidget {
             isLive: true,
             digitalClockTextColor: clockColor,
             format: DateFormat.jms().pattern,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               // color: Colors.yellow,
               shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderRadius: BorderRadius.all(Radius.circular(15.r)),
             ),
             datetime: DateTime.now());
   }
