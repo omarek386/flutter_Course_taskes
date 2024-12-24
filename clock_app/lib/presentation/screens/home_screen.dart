@@ -19,9 +19,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Color hourMinuetsColor = Colors.black;
   Color secondsColor = Colors.black;
   Color numberColor = Colors.black;
+  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
+    if (isSelected) {
+      Future.delayed(const Duration(seconds: 3), () {
+        setState(() {
+          isSelected = false;
+        });
+      });
+    }
     return Scaffold(
       drawer: clockControlDrawer(context),
       appBar: AppBar(
@@ -41,37 +49,40 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Drawer clockControlDrawer(BuildContext context) {
     return Drawer(
+        backgroundColor: isSelected
+            ? Colors.white.withOpacity(0.4)
+            : Colors.white, // Colors.white.withOpacity(0.9),
         child: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            width: double.infinity,
-            child: drawerHeader(),
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                width: double.infinity,
+                child: drawerHeader(),
+              ),
+              analogButton(context),
+              digitalButton(context),
+              PickColor(method: selectColorOfClock(), title: 'Clock Color'),
+              isAnalog
+                  ? PickColor(
+                      method: selectColorOfHourMinuets(),
+                      title: 'Hour and Minute Color')
+                  : Container(),
+              isAnalog
+                  ? PickColor(
+                      method: selectColorOfSeconds(), title: 'Seconds Color')
+                  : Container(),
+              isAnalog
+                  ? PickColor(
+                      method: selectColorOfNumbers(), title: 'Numbers Color')
+                  : Container(),
+              SizedBox(height: 20.h),
+              const Divider(),
+              SizedBox(height: 20.h),
+              const Text('Clock Size'),
+              slider(context),
+            ],
           ),
-          analogButton(context),
-          digitalButton(context),
-          PickColor(method: selectColorOfClock(), title: 'Clock Color'),
-          isAnalog
-              ? PickColor(
-                  method: selectColorOfHourMinuets(),
-                  title: 'Hour and Minute Color')
-              : Container(),
-          isAnalog
-              ? PickColor(
-                  method: selectColorOfSeconds(), title: 'Seconds Color')
-              : Container(),
-          isAnalog
-              ? PickColor(
-                  method: selectColorOfNumbers(), title: 'Numbers Color')
-              : Container(),
-          SizedBox(height: 20.h),
-          const Divider(),
-          SizedBox(height: 20.h),
-          const Text('Clock Size'),
-          slider(context),
-        ],
-      ),
-    ));
+        ));
   }
 
   Slider slider(BuildContext context) {
@@ -82,6 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
       activeColor: Colors.blue,
       label: 'Clock Size',
       onChanged: (value) {
+        isSelected = true;
         setState(
           () {
             clockSize = value;
@@ -93,12 +105,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   DrawerHeader drawerHeader() {
-    return const DrawerHeader(
+    return DrawerHeader(
       // curve: Curves.easeInOutCirc,
       decoration: BoxDecoration(
-        color: Colors.blue,
+        color: Colors.blue.withOpacity(isSelected ? 0.4 : 1.0),
       ),
-      child: Center(
+      child: const Center(
           child: Text(
         'Clock App',
         style: TextStyle(
@@ -140,10 +152,12 @@ class _HomeScreenState extends State<HomeScreen> {
           return Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: ColorBox(
-                color: Colors.primaries[index],
+                color:
+                    Colors.primaries[index].withOpacity(isSelected ? 0.4 : 1.0),
                 onTap: () {
                   setState(() {
                     clockColor = Colors.primaries[index];
+                    isSelected = true;
                   });
                 }),
           );
@@ -159,10 +173,12 @@ class _HomeScreenState extends State<HomeScreen> {
           return Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: ColorBox(
-                color: Colors.primaries[index],
+                color:
+                    Colors.primaries[index].withOpacity(isSelected ? 0.4 : 1.0),
                 onTap: () {
                   setState(() {
                     hourMinuetsColor = Colors.primaries[index];
+                    isSelected = true;
                   });
                 }),
           );
@@ -178,10 +194,12 @@ class _HomeScreenState extends State<HomeScreen> {
           return Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: ColorBox(
-                color: Colors.primaries[index],
+                color:
+                    Colors.primaries[index].withOpacity(isSelected ? 0.4 : 1.0),
                 onTap: () {
                   setState(() {
                     secondsColor = Colors.primaries[index];
+                    isSelected = true;
                   });
                 }),
           );
@@ -197,10 +215,12 @@ class _HomeScreenState extends State<HomeScreen> {
           return Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: ColorBox(
-                color: Colors.primaries[index],
+                color:
+                    Colors.primaries[index].withOpacity(isSelected ? 0.4 : 1.0),
                 onTap: () {
                   setState(() {
                     numberColor = Colors.primaries[index];
+                    isSelected = true;
                   });
                 }),
           );
